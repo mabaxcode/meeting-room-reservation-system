@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -14,11 +13,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-// Route::get('/manage-room', function () {
-//     return 'Welcome, Admin!';
-// })->middleware(AdminMiddleware::class);
-Route::middleware(['auth', 'admin'])->get('/manage-user', function () {
-    return 'Welcome, Admin!';
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('manage-room', function () {
+        // return Inertia::render('manage-room');
+    })->name('manage.room');
 });
 
 require __DIR__.'/settings.php';
