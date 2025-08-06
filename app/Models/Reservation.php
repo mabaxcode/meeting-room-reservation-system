@@ -15,4 +15,14 @@ class Reservation extends Model
         'end_time',
         'remark',
     ];
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class, 'meeting_room_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

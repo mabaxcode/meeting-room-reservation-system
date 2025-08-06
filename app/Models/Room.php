@@ -11,4 +11,9 @@ class Room extends Model
 
     protected $fillable = ['name'];
     protected $table = 'meeting_rooms';
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

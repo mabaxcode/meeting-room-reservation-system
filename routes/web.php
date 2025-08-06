@@ -18,6 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // })->name('daftar-tempahan');
     Route::get('daftar-tempahan', [TempahanController::class, 'index'])->name('daftar-tempahan');
     Route::post('submit-tempahan', [TempahanController::class, 'store'])->name('store.reservation');
+    Route::get('calendar', [TempahanController::class, 'reservationCalendar'])->name('calendar');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

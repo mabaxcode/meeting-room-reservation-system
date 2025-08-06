@@ -7,8 +7,9 @@ import { Input } from '@/components/ui/input';
 import InputError from '@/components/input-error';
 import HeadingSmall from '@/components/heading-small';
 import BorangTempahan from '@/components/borang-tempahan';
-import { BookingDatePicker } from '@/components/google-calendar';
-import { usePage } from '@inertiajs/react';
+import Calendar from '@/components/reservation-calendar';
+import { usePage } from '@inertiajs/react'; 
+// import Calendar from './calendar';
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -27,28 +28,38 @@ type Room = {
     name: string;
 };
 
+type Reservation = {
+    id: number;
+    title: string | null;
+    purpose: string;
+    remark: string | null;
+    start_time: string; // ISO format: "2025-08-07 09:00:00"
+    end_time: string;   // ISO format: "2025-08-07 10:00:00"
+    status: 'pending' | 'approved' | 'rejected'; // adjust if needed
+    user_id: number;
+    meeting_room_id: number;
+    created_at: string; // ISO datetime
+    updated_at: string; // ISO datetime
+    room: Room; // nested object
+};
+
+
 interface Props {
     rooms: Room[];
+    reservations: Reservation[]
 }
 
-export default function DaftarTempahan({ rooms }: Props) {
-
-    // console.log('Rooms:', rooms);
-
-    // const { rooms } = usePage<{ props: { rooms: Room[] } }>().props;
-    // const roomsList = rooms as { id: number, name: string }[];
-
+export default function DaftarTempahan({ rooms, reservations }: Props) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
                 <div className="flex flex-row gap-4">
-                    <div className="basis-2/3 h-fit sticky top-4 rounded-xl border p-4 bg-white shadow">
-                        {/* <BorangTempahan /> */}
+                    <div className="basis-1/3 h-fit sticky top-4 rounded-xl border p-4 bg-white shadow">
                         <BorangTempahan rooms={rooms} />
                     </div>
-                    <div className="basis-2/3 h-64 rounded-xl p-4">
-                        <BookingDatePicker/>
+                    <div className="basis-3/3 h-64 rounded-xl p-4">
+                        <Calendar reservations={reservations} />
                     </div>
                 </div>
             </div>

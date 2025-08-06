@@ -37,13 +37,10 @@ export default function BorangTempahan({ rooms }: BorangTempahanProps) {
           // onSuccess: () => reset(),
           onSuccess: () => {
             reset(),
-            // toast("Berjaya!", {
-            //   description: "Tempahan telah berjaya dibuat",
-            // })
             toast.success("Berjaya!", {
               description: "Tempahan telah berjaya dibuat",
             })
-            console.log('success');
+            // console.log('success');
           },
           onError: (errors) => {
               // toast.error("There was a problem submitting the form.")
@@ -58,9 +55,7 @@ export default function BorangTempahan({ rooms }: BorangTempahanProps) {
   };
 
   const handleCancel = () => {
-      if (formRef.current) {
-          formRef.current.reset();
-      }
+      reset()
   };
 
 
@@ -68,7 +63,7 @@ export default function BorangTempahan({ rooms }: BorangTempahanProps) {
     <form ref={formRef} onSubmit={saveReservation} className="space-y-6">
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base/7 font-semibold text-gray-900">Borang Tempahan Bilik Mesyuarat</h2>
+          <h2 className="text-base/7 font-semibold text-gray-900">Borang Tempahan</h2>
           <p className="mt-1 text-sm/6 text-gray-600">
             Sila lengkapkan borang di bawah untuk membuat tempahan bilik mesyuarat.
           </p>
@@ -79,7 +74,7 @@ export default function BorangTempahan({ rooms }: BorangTempahanProps) {
                 Tajuk
               </label>
               <div className="mt-2">
-                <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 ">
                   
                   <input
                     id="title"
@@ -108,7 +103,7 @@ export default function BorangTempahan({ rooms }: BorangTempahanProps) {
                   rows={3}
                   value={data.reason}
                   onChange={(e) => setData('reason', e.target.value)}
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2  sm:text-sm/6"
                 />
               </div>
               <InputError className="mt-2" message={errors.reason} />
@@ -126,7 +121,7 @@ export default function BorangTempahan({ rooms }: BorangTempahanProps) {
                   autoComplete="bilik-name"
                   value={data.meeting_room_id}
                   onChange={(e) => setData('meeting_room_id', e.target.value)}
-                  className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2  sm:text-sm/6"
                 >
                   <option>Sila Pilih</option>
                   {rooms.map((room) => (
@@ -144,7 +139,7 @@ export default function BorangTempahan({ rooms }: BorangTempahanProps) {
               <InputError className="mt-2" message={errors.meeting_room_id} />
             </div>
 
-            <div className="sm:col-span-3">
+            <div className="col-span-full">
               <label htmlFor="first-name" className="block text-sm/6 font-medium text-gray-900">
                 Tarikh & Masa Mula
               </label>
@@ -156,13 +151,13 @@ export default function BorangTempahan({ rooms }: BorangTempahanProps) {
                   autoComplete="end_time-val"
                   value={data.start_time}
                   onChange={(e) => setData('start_time', e.target.value)}
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2  sm:text-sm/6"
                 />
               </div>
               <InputError className="mt-2" message={errors.start_time} />
             </div>
 
-            <div className="sm:col-span-3">
+            <div className="col-span-full">
               <label htmlFor="last-name" className="block text-sm/6 font-medium text-gray-900">
               Tarikh & Masa Tamat
               </label>
@@ -174,7 +169,7 @@ export default function BorangTempahan({ rooms }: BorangTempahanProps) {
                   autoComplete="end_time-val"
                   value={data.end_time}
                   onChange={(e) => setData('end_time', e.target.value)}
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2  sm:text-sm/6"
                 />
               </div>
               <InputError className="mt-2" message={errors.end_time} />
@@ -194,7 +189,7 @@ export default function BorangTempahan({ rooms }: BorangTempahanProps) {
                   rows={3}
                   value={data.remark}
                   onChange={(e) => setData('remark', e.target.value)}
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2  sm:text-sm/6"
                 />
               </div>
               {/* <p className="mt-3 text-sm/6 text-gray-600">Write a few sentences about yourself.</p> */}

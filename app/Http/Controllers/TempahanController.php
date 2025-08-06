@@ -22,9 +22,11 @@ class TempahanController extends Controller
     public function index()
     {
         $rooms = Room::all(); // or Room::paginate(10), etc.
+        $reservations = Reservation::with('room','user')->get();
 
         return Inertia::render('daftar-tempahan', [
             'rooms' => $rooms,
+            'reservations' => $reservations,
         ]);
     }
 
@@ -49,4 +51,25 @@ class TempahanController extends Controller
         $this->reservationService->createReservation($validated, $request->input('remark'));
         return to_route('daftar-tempahan')->with('success', 'Leave request submitted successfully.');
     }
+
+    // public function reservationCalendar()
+    // {
+        // $reservations = Reservation::with('room')->get();
+
+        // return Inertia::render('calendar', [
+        //     'reservations' => $reservations
+        // ]);
+
+        // return Inertia::render('calendar', [
+        //     'events' => $reservations->map(function ($reservation) {
+        //         return [
+        //             'id' => $reservation->id,
+        //             'title' => $reservation->title . ' - ' . $reservation->room->name,
+        //             'start' => $reservation->start_time,
+        //             'end' => $reservation->end_time,
+        //             'room' => $reservation->room->name,
+        //         ];
+        //     }),
+        // ]);
+    // }
 }
