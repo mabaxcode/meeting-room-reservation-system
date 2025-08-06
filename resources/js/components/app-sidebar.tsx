@@ -9,8 +9,13 @@ import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Home',
         href: '/dashboard',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Daftar Tempahan',
+        href: '/daftar-tempahan',
         icon: LayoutGrid,
     },
 ];

@@ -5,7 +5,11 @@ import { Head } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Sistem Tempahan Bilik Mesyuarat',
+        href: '/dashboard',
+    },
+    {
+        title: 'Home',
         href: '/dashboard',
     },
 ];
