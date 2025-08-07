@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Room;
+use App\Models\User;
 use App\Models\Reservation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,35 @@ class TempahanController extends Controller
 
         return Inertia::render('senarai-tempahan', [
             'reservations' => $reservations,
+        ]);
+    }
+
+    public function getUsers(Request $request)
+    {
+        //$users = User::select('id', 'name', 'email', 'created_at')->get();
+
+        // dd($users);
+
+        // return Inertia::render('users', [
+        //     'users' => $users,
+        // ]);
+
+        $search = $request->input('search');
+
+        $users = User::query()
+            ->when($search, function ($query, $search) {
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+
+        return Inertia::render('senarai-tempahan', [
+            'users' => $users,
+            'filters' => [
+                'search' => $search,
+            ],
         ]);
     }
 
