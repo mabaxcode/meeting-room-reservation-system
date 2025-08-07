@@ -52,6 +52,16 @@ class TempahanController extends Controller
         return to_route('daftar-tempahan')->with('success', 'Leave request submitted successfully.');
     }
 
+    public function senaraiTempahan()
+    {
+        $rooms = Room::all();
+        $reservations = Reservation::with('room','user')->get();
+
+        return Inertia::render('senarai-tempahan', [
+            'reservations' => $reservations,
+        ]);
+    }
+
     // public function reservationCalendar()
     // {
         // $reservations = Reservation::with('room')->get();
