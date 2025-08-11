@@ -18,7 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('submit-tempahan', [TempahanController::class, 'store'])->name('store.reservation');
     Route::get('calendar', [TempahanController::class, 'reservationCalendar'])->name('calendar');
     // Route::get('senarai-tempahan', [TempahanController::class, 'senaraiTempahan'])->name('senarai-tempahan'); 
-    Route::get('senarai-tempahan', [TempahanController::class, 'getUsers'])->name('users.list'); 
+    Route::get('senarai-tempahan', [TempahanController::class, 'senaraiTempahan'])->name('reservation.list'); 
     // Route::get('get-user', [TempahanController::class, 'getUsers'])->name('users.list'); 
 });
 

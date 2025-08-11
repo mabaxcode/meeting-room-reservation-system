@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, House, CalendarArrowUp, ClipboardList } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, House, CalendarArrowUp, ClipboardList, ListTodo } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -19,7 +19,12 @@ const mainNavItems: NavItem[] = [
         icon: CalendarArrowUp,
     },
     {
-        title: 'Senarai Tempahan',
+        title: 'Tempahan Saya',
+        href: '/tempahan-saya',
+        icon: ListTodo,
+    },
+    {
+        title: 'Senarai Semua',
         href: '/senarai-tempahan',
         icon: ClipboardList,
     },

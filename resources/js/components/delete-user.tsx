@@ -71,7 +71,7 @@ export default function DeleteUser() {
 
                             <DialogFooter className="gap-2">
                                 <DialogClose asChild>
-                                    <Button variant="secondary" onClick={closeModal}>
+                                    <Button variant="" onClick={closeModal}>
                                         Cancel
                                     </Button>
                                 </DialogClose>
